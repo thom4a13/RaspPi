@@ -1,0 +1,27 @@
+<html>
+ <head>
+    <meta charset="utf-8" />
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css') }}"  />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+ </head>
+ <body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
+        <a href="{{ url_for('site1') }}" class="navbar-item">øvelse 3 knap</a>
+        <a href="{{ url_for('site2') }}" class="navbar-item">øvelse 4 lysstyrke</a>
+        <a href="{{ url_for('site3') }}" class="navbar-item">øvelse 5 dht</a>
+    </div>
+ <h2>Skru på lyset</h2>
+ <input oninput="skru()" type="range" min="0" max="255" id="lysstyrke"/>
+ <script>
+ var socket = io();
+ function skru() {
+ socket.emit('skru_fra_browser',
+ {
+ 'lysstyrke' : document.getElementById('lysstyrke').value
+ })
+ }
+ </script>
+ </body>
+</html>
