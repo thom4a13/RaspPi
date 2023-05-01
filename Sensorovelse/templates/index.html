@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DHT11 Sensor Readings</title>
+  </head>
+  <body>
+    <h1>DHT11 Sensor Readings</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Date and Time</th>
+          <th>Temperature (&deg;C)</th>
+          <th>Humidity (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for reading in readings %}
+        <tr>
+          <td>{{ reading.datetime }}</td>
+          <td>{{ reading.temperature }}</td>
+          <td>{{ reading.humidity }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <script>
+      setInterval(function(){
+        location.reload();
+      }, 3000); // refresh every 3 seconds
+    </script>
+  </body>
+</html>
+
